@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sebastian Vega</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📸</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300&family=Newsreader:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #C8352A;
+  --black: #111;
+  --gray: #666;
+  --light: #f0eeea;
+  --white: #fafaf8;
+  --ff-serif: 'Newsreader', serif;
+  --ff-sans: 'Source Sans 3', sans-serif;
+}
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+body {
+  background: #ffffff;
+  color: var(--black);
+  font-family: var(--ff-sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  padding-top: 57px;
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+
+.nav-name {
+  font-family: var(--ff-sans);
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 101;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--black);
+  transition: transform 0.25s, opacity 0.25s;
+  transform-origin: center;
+}
+
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* HERO */
+#home {
+  display: grid;
+  grid-template-columns: minmax(auto, 420px) minmax(auto, 480px);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2.5rem 8rem 3.5rem;
+  gap: 4rem;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #ededeb;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
+}
+
+/* Inner wrapper to constrain content width */
+#home > * { position: relative; z-index: 1; }
+
+.hero-photo {
+  aspect-ratio: 3/4;
+  max-height: 420px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Swap this img tag's src for your real headshot */
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-photo-placeholder {
+  font-family: var(--ff-serif);
+  font-size: 8rem;
+  color: rgba(0,0,0,0.07);
+  user-select: none;
+  position: absolute;
+}
+
+.hero-photo-caption {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  font-size: 0.63rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.3);
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.hero-role {
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.hero-role::before {
+  content: '';
+  display: inline-block;
+  width: 1.5rem;
+  height: 1px;
+  background: var(--red);
+}
+
+h1 {
+  font-family: var(--ff-serif);
+  font-size: clamp(2.25rem, 3.5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--black);
+}
+
+h1 em { font-style: italic; color: var(--red); }
+
+.hero-subtitle {
+  font-family: var(--ff-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-top: -1.25rem;
+}
+
+.hero-bio {
+  font-size: 0.97rem;
+  line-height: 1.85;
+  color: var(--gray);
+  border-left: 2px solid var(--red);
+  padding-left: 1.25rem;
+}
+
+.hero-outlets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.outlet-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 0.3rem 0.7rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.outlet-tag:hover { border-color: var(--red); color: var(--red); }
+
+.outlet-tag.outlet-current {
+  border-color: var(--red);
+  color: var(--red);
+  font-weight: 500;
+}
+
+.hero-cta-row {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.btn-primary {
+  background: var(--red);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.73rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.75rem;
+  font-weight: 500;
+  display: inline-block;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover { background: #a82b22; transform: translateY(-1px); }
+
+.btn-secondary {
+  font-size: 0.73rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  padding-bottom: 0.1rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.btn-secondary:hover { color: var(--red); border-color: var(--red); }
+
+/* DIVIDER */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(0,0,0,0.06);
+}
+
+/* WORK */
+#work {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 3rem;
+  background: #ffffff;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2.5rem;
+}
+
+.section-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.4rem;
+}
+
+h2 {
+  font-family: var(--ff-sans);
+  font-size: clamp(1.85rem, 3vw, 2.75rem);
+  font-weight: 700;
+  color: var(--black);
+  line-height: 1.1;
+}
+
+.section-count {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-size: 4rem;
+  color: rgba(0,0,0,0.06);
+  line-height: 1;
+}
+
+.hero-greeting {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--gray);
+  margin-bottom: -0.75rem;
+}
+
+/* VIDEO LAYOUT */
+.video-desktop { display: block; }
+.video-mobile-feed { display: none; }
+
+/* VIDEO MODAL */
+.video-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.video-modal-overlay.active { display: flex; }
+
+.video-modal-inner {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+}
+
+.video-modal-embed {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #000;
+  width: 100%;
+}
+
+.video-modal-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-modal-info {
+  padding: 0.75rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.video-modal-outlet {
+  font-family: var(--ff-sans);
+  font-size: 0.63rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+
+.video-modal-title {
+  font-family: var(--ff-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  color: #fff;
+}
+
+.video-modal-close {
+  position: absolute;
+  top: -2.5rem;
+  right: 0;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-family: var(--ff-sans);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s;
+}
+
+.video-modal-close:hover { color: #fff; }
+
+/* VIDEO GRID */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.video-card {
+  background: var(--white);
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.video-card:hover { background: var(--light); }
+
+.vc-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+
+.vc-thumb-wrap {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: #ddd;
+}
+
+.vc-thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.vc-thumb-placeholder {
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vc-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0);
+  transition: background 0.2s;
+}
+
+.video-card:hover .vc-play-overlay { background: rgba(0,0,0,0.28); }
+
+.vc-info {
+  padding: 0.85rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.vc-outlet {
+  font-family: var(--ff-sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.vc-title {
+  font-family: var(--ff-sans);
+  font-size: 0.92rem;
+  color: var(--black);
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.vc-note {
+  font-family: var(--ff-sans);
+  font-size: 0.75rem;
+  color: var(--gray);
+  line-height: 1.4;
+  font-style: italic;
+  margin-top: 0.1rem;
+}
+
+/* MOBILE VIDEO FEED */
+.mobile-video-item { margin-bottom: 1.75rem; }
+
+.mobile-video-embed {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #111;
+  overflow: hidden;
+  width: 100%;
+}
+
+.mobile-poster {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mobile-play-btn {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  background: rgba(0,0,0,0.55);
+  border: 2px solid rgba(255,255,255,0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-placeholder { background: #e8e8e8; }
+
+.mobile-video-info {
+  padding: 0.6rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.mobile-vc-note {
+  font-family: var(--ff-sans);
+  font-size: 0.75rem;
+  color: var(--gray);
+  font-style: italic;
+}
+
+/* GALLERY */
+#gallery {
+  padding: 4rem 3rem 3rem;
+  background: var(--light);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  width: 100%;
+}
+
+#gallery .section-header {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+
+.carousel-wrap {
+  position: relative;
+  max-width: 560px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.carousel-slide { min-width: 100%; }
+
+.carousel-placeholder {
+  aspect-ratio: 3/2;
+  background: rgba(0,0,0,0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.25);
+}
+
+.carousel-caption {
+  font-family: var(--ff-sans);
+  font-size: 0.78rem;
+  color: var(--gray);
+  padding: 0.6rem 0.25rem 0;
+  line-height: 1.5;
+  min-height: 2.2rem;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 38%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(0,0,0,0.12);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--black);
+  transition: background 0.2s, color 0.2s;
+  z-index: 2;
+}
+
+.carousel-btn:hover { background: var(--red); color: white; border-color: var(--red); }
+.carousel-prev { left: 0.75rem; }
+.carousel-next { right: 0.75rem; }
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.18);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.dot.active { background: var(--red); }
+
+/* ABOUT */
+#about {
+  background: #ffffff;
+  padding: 6rem 3rem;
+  border-top: 1px solid rgba(0,0,0,0.07);
+}
+
+.about-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.about-photo-wrap { position: relative; }
+
+.about-photo {
+  aspect-ratio: 3/4;
+  background: rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Swap img src for your real headshot in the about section too */
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-photo-placeholder {
+  font-family: var(--ff-serif);
+  font-size: 5rem;
+  color: rgba(0,0,0,0.08);
+}
+
+.about-photo-tag {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: var(--red);
+  color: #fff;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.85rem;
+}
+
+.about-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about-body p {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--gray);
+}
+
+.about-body p strong { color: var(--black); font-weight: 500; }
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.stat-num {
+  font-family: var(--ff-serif);
+  font-size: 2.25rem;
+  color: var(--red);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-top: 0.3rem;
+  line-height: 1.4;
+}
+
+.contact-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.contact-link {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding-bottom: 0.1rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.contact-link:hover { color: var(--red); border-color: var(--red); }
+
+/* FOOTER */
+footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  font-size: 0.7rem;
+  color: rgba(0,0,0,0.3);
+  letter-spacing: 0.08em;
+}
+
+.footer-name {
+  font-family: var(--ff-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.4);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.footer-link {
+  font-family: var(--ff-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover { color: var(--red); }
+
+/* RESUME */
+#resume {
+  background: var(--light);
+  padding: 6rem 3rem;
+  border-top: 1px solid rgba(0,0,0,0.07);
+}
+
+.resume-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.resume-block {
+  margin-bottom: 4rem;
+}
+
+.resume-block:last-child { margin-bottom: 0; }
+
+.resume-block-title {
+  font-family: var(--ff-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.resume-entry {
+  display: block;
+  margin-bottom: 2.25rem;
+  padding-bottom: 2.25rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.resume-entry:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.resume-date {
+  font-family: var(--ff-sans);
+  font-size: 0.75rem;
+  color: var(--gray);
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  margin-top: 0.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.resume-content {}
+
+.resume-org {
+  font-family: var(--ff-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 0.2rem;
+}
+
+.resume-role {
+  font-family: var(--ff-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--black);
+  line-height: 1.25;
+  margin-bottom: 0.15rem;
+}
+
+.resume-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+}
+
+.resume-bullets li {
+  font-family: var(--ff-sans);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--gray);
+  padding-left: 0;
+  position: relative;
+}
+
+.resume-bullets li::before {
+  content: none;
+}
+
+/* Skills & Orgs: simpler layout */
+.resume-simple-entry {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0 2.5rem;
+}
+
+.resume-simple-entry:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.resume-simple-label {
+  font-family: var(--ff-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--black);
+  padding-top: 0.1rem;
+}
+
+.resume-simple-value {
+  font-family: var(--ff-sans);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--gray);
+}
+
+.resume-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.resume-tag {
+  font-family: var(--ff-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--black);
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 0.25rem 0.65rem;
+}
+
+/* Education: no bullets needed */
+.resume-edu-detail {
+  font-family: var(--ff-sans);
+  font-size: 0.88rem;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  #resume { padding: 4rem 1.5rem; }
+
+  .resume-entry { display: block; }
+  .resume-date { padding-top: 0; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-text > * {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
+.hero-greeting { animation-delay: 0.0s; }
+.hero-role    { animation-delay: 0.05s; }
+h1            { animation-delay: 0.15s; }
+.hero-bio     { animation-delay: 0.25s; }
+.hero-outlets { animation-delay: 0.35s; }
+.hero-cta-row { animation-delay: 0.45s; }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav { padding: 1.25rem 1.5rem; position: fixed; top: 0; left: 0; right: 0; z-index: 100; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.98);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    z-index: 99;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a {
+    display: block;
+    width: 100%;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    color: var(--black);
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .nav-links li:last-child a { border-bottom: none; }
+  .nav-hamburger { display: flex; }
+
+  #home {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 2rem 1.5rem 3rem;
+    gap: 2rem;
+  }
+
+  .hero-photo { aspect-ratio: 1/1; max-height: 300px; }
+  .hero-bio { max-width: 100%; font-family: var(--ff-sans); }
+  .hero-greeting { font-family: var(--ff-serif); }
+
+  #work { padding: 4rem 1.5rem; }
+  .section-header { flex-direction: column; align-items: flex-start; gap: 0; }
+
+  /* Switch video to mobile feed */
+  .video-desktop { display: none; }
+  .video-mobile-feed { display: block; }
+
+  #gallery { padding: 4rem 1.5rem; }
+
+  #about { padding: 4rem 1.5rem; }
+
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .about-photo { aspect-ratio: 1/1; }
+  .stats-row { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+
+  footer {
+    padding: 1.5rem;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+    background: var(--white);
+  }
+
+  .footer-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+  footer,
+  footer .footer-name {
+    color: rgba(0,0,0,0.6);
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-name" href="#home">Sebastian Vega</a>
+  <ul class="nav-links">
+    <li><a href="#work" onclick="closeMenu()">Work</a></li>
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#resume" onclick="closeMenu()">Resume</a></li>
+    <li><a href="mailto:hello@sebvega.com" onclick="closeMenu()">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-photo">
+    <img src="photo-about.jpeg" alt="Sebastian Vega">
+  </div>
+
+  <div class="hero-text">
+    <p class="hero-greeting">Hi, I'm</p>
+    <h1>Sebastian <em>Vega</em></h1>
+    <p class="hero-bio">I'm a journalist and video editor passionate about improving the way you receive news. My work has supported major channel growth, million-view videos, and new show launches.</p>
+
+    <div class="hero-outlets">
+      <span class="outlet-tag outlet-current">Morning Brew ✦</span>
+      <span class="outlet-tag">The Wall Street Journal</span>
+      <span class="outlet-tag">The New York Times</span>
+    </div>
+
+    <div class="hero-cta-row">
+      <a class="btn-primary" href="#work">View My Work</a>
+      <a class="btn-secondary" href="#about">About Me</a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-header">
+    <div>
+      <p class="section-label">Selected Work</p>
+      <h2>Video Portfolio</h2>
+    </div>
+  </div>
+
+  <!-- DESKTOP: 2-col grid, each opens modal -->
+  <div class="video-desktop">
+    <div class="video-grid" id="video-grid">
+      <div class="video-card" data-video-id="1TuSdiy0skc" data-outlet="The Wall Street Journal" data-title="Dow's Worst Day Since 2008; Here's What You Need To Know">
+        <div class="vc-thumb-wrap">
+          <img class="vc-thumb" src="https://img.youtube.com/vi/1TuSdiy0skc/maxresdefault.jpg" onerror="this.src=\'https://img.youtube.com/vi/1TuSdiy0skc/hqdefault.jpg\'" alt="WSJ">
+          <div class="vc-play-overlay"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 2.5l12 6.5-12 6.5V2.5z" fill="white"/></svg></div>
+        </div>
+        <div class="vc-info">
+          <span class="vc-outlet">The Wall Street Journal</span>
+          <span class="vc-title">Dow's Worst Day Since 2008; Here's What You Need To Know</span>
+        </div>
+      </div>
+
+      <div class="video-card" data-video-id="0O2EolPa2NM" data-outlet="Maxinomics" data-title="America Will Be the Last Superpower, Here's Why">
+        <div class="vc-thumb-wrap">
+          <img class="vc-thumb" src="https://img.youtube.com/vi/0O2EolPa2NM/maxresdefault.jpg" onerror="this.src=\'https://img.youtube.com/vi/0O2EolPa2NM/hqdefault.jpg\'" alt="Maxinomics">
+          <div class="vc-play-overlay"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 2.5l12 6.5-12 6.5V2.5z" fill="white"/></svg></div>
+        </div>
+        <div class="vc-info">
+          <span class="vc-outlet">Maxinomics</span>
+          <span class="vc-title">America Will Be the Last Superpower, Here's Why</span>
+        </div>
+      </div>
+
+      <div class="video-card" data-video-id="BKkCP_-KCOk" data-outlet="Morning Brew" data-title="An oyster revolution is happening in NYC">
+        <div class="vc-thumb-wrap">
+          <img class="vc-thumb" src="https://img.youtube.com/vi/BKkCP_-KCOk/maxresdefault.jpg" onerror="this.src=\'https://img.youtube.com/vi/BKkCP_-KCOk/hqdefault.jpg\'" alt="Morning Brew Oyster">
+          <div class="vc-play-overlay"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 2.5l12 6.5-12 6.5V2.5z" fill="white"/></svg></div>
+        </div>
+        <div class="vc-info">
+          <span class="vc-outlet">Morning Brew</span>
+          <span class="vc-title">An oyster revolution is happening in NYC</span>
+        </div>
+      </div>
+
+      <div class="video-card" data-video-id="gFgWWFgapjo" data-outlet="NBC Nightly News" data-title="Go Inside the 7-Story Noah's Ark Replica Being Built in Kentucky">
+        <div class="vc-thumb-wrap">
+          <img class="vc-thumb" src="https://img.youtube.com/vi/gFgWWFgapjo/maxresdefault.jpg" onerror="this.src=\'https://img.youtube.com/vi/gFgWWFgapjo/hqdefault.jpg\'" alt="NBC Nightly News">
+          <div class="vc-play-overlay"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 2.5l12 6.5-12 6.5V2.5z" fill="white"/></svg></div>
+        </div>
+        <div class="vc-info">
+          <span class="vc-outlet">NBC Nightly News</span>
+          <span class="vc-title">Go Inside the 7-Story Noah's Ark Replica Being Built in Kentucky</span>
+          <span class="vc-note">30M views · Edited in 2016</span>
+        </div>
+      </div>
+
+      <div class="video-card placeholder-card" data-video-id="" data-outlet="Outlet Name" data-title="Add video title here">
+        <div class="vc-thumb-wrap vc-thumb-placeholder">
+          <div class="vc-play-overlay"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 2.5l12 6.5-12 6.5V2.5z" fill="rgba(0,0,0,0.25)"/></svg></div>
+        </div>
+        <div class="vc-info">
+          <span class="vc-outlet">Outlet Name</span>
+          <span class="vc-title">Add video title here</span>
+        </div>
+      </div>
+
+      <div class="video-card placeholder-card" data-video-id="" data-outlet="Outlet Name" data-title="Add video title here">
+        <div class="vc-thumb-wrap vc-thumb-placeholder">
+          <div class="vc-play-overlay"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 2.5l12 6.5-12 6.5V2.5z" fill="rgba(0,0,0,0.25)"/></svg></div>
+        </div>
+        <div class="vc-info">
+          <span class="vc-outlet">Outlet Name</span>
+          <span class="vc-title">Add video title here</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIDEO MODAL -->
+  <div class="video-modal-overlay" id="video-modal" onclick="closeModal(event)">
+    <div class="video-modal-inner">
+      <button class="video-modal-close" onclick="closeVideoModal()">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Close
+      </button>
+      <div class="video-modal-embed" id="modal-embed"></div>
+      <div class="video-modal-info">
+        <span class="video-modal-outlet" id="modal-outlet"></span>
+        <span class="video-modal-title" id="modal-title"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBILE: Simple vertical feed -->
+  <div class="video-mobile-feed">
+    <div class="mobile-video-item">
+      <div class="mobile-video-embed" data-video-id="1TuSdiy0skc" data-embeddable="true">
+        <div class="mobile-poster" onclick="loadMobileVideo(this)">
+          <img src="https://img.youtube.com/vi/1TuSdiy0skc/maxresdefault.jpg" onerror="this.src=\'https://img.youtube.com/vi/1TuSdiy0skc/hqdefault.jpg\'" alt="WSJ">
+          <div class="mobile-play-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5l10 5.5-10 5.5V2.5z" fill="white"/></svg></div>
+        </div>
+      </div>
+      <div class="mobile-video-info">
+        <span class="vc-outlet">The Wall Street Journal</span>
+        <span class="vc-title">Dow's Worst Day Since 2008; Here's What You Need To Know</span>
+      </div>
+    </div>
+    <div class="mobile-video-item">
+      <div class="mobile-video-embed" data-video-id="0O2EolPa2NM" data-embeddable="true" data-youtube-url="https://www.youtube.com/watch?v=0O2EolPa2NM">
+        <div class="mobile-poster" onclick="loadMobileVideo(this)">
+          <img src="https://img.youtube.com/vi/0O2EolPa2NM/maxresdefault.jpg" onerror="this.src=\'https://img.youtube.com/vi/0O2EolPa2NM/hqdefault.jpg\'" alt="Morning Brew">
+          <div class="mobile-play-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5l10 5.5-10 5.5V2.5z" fill="white"/></svg></div>
+        </div>
+      </div>
+      <div class="mobile-video-info">
+        <span class="vc-outlet">Morning Brew</span>
+        <span class="vc-title">America Will Be the Last Superpower, Here's Why</span>
+      </div>
+    </div>
+    <div class="mobile-video-item">
+      <div class="mobile-video-embed" data-video-id="BKkCP_-KCOk" data-embeddable="true" data-youtube-url="https://www.youtube.com/watch?v=BKkCP_-KCOk">
+        <div class="mobile-poster" onclick="loadMobileVideo(this)">
+          <img src="https://img.youtube.com/vi/BKkCP_-KCOk/maxresdefault.jpg" onerror="this.src=\'https://img.youtube.com/vi/BKkCP_-KCOk/hqdefault.jpg\'" alt="Oyster">
+          <div class="mobile-play-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2.5l10 5.5-10 5.5V2.5z" fill="white"/></svg></div>
+        </div>
+      </div>
+      <div class="mobile-video-info">
+        <span class="vc-outlet">Morning Brew</span>
+        <span class="vc-title">An oyster revolution is happening in NYC</span>
+      </div>
+    </div>
+    <!-- Placeholder mobile items -->
+    <div class="mobile-video-item">
+      <div class="mobile-video-embed mobile-placeholder"></div>
+      <div class="mobile-video-info">
+        <span class="vc-outlet">Outlet Name</span>
+        <span class="vc-title">Add video title here</span>
+      </div>
+    </div>
+    <div class="mobile-video-item">
+      <div class="mobile-video-embed mobile-placeholder"></div>
+      <div class="mobile-video-info">
+        <span class="vc-outlet">Outlet Name</span>
+        <span class="vc-title">Add video title here</span>
+      </div>
+    </div>
+    <div class="mobile-video-item">
+      <div class="mobile-video-embed mobile-placeholder"></div>
+      <div class="mobile-video-info">
+        <span class="vc-outlet">Outlet Name</span>
+        <span class="vc-title">Add video title here</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section id="gallery">
+  <div class="section-header">
+    <div>
+      <p class="section-label">Photo</p>
+      <h2>Gallery</h2>
+    </div>
+  </div>
+
+  <div class="carousel-wrap">
+    <div class="carousel-track" id="carousel-track">
+      <div class="carousel-slide">
+        <div class="carousel-placeholder"><span>Photo 1</span></div>
+        <p class="carousel-caption">Caption for photo 1</p>
+      </div>
+      <div class="carousel-slide">
+        <div class="carousel-placeholder"><span>Photo 2</span></div>
+        <p class="carousel-caption">Caption for photo 2</p>
+      </div>
+      <div class="carousel-slide">
+        <div class="carousel-placeholder"><span>Photo 3</span></div>
+        <p class="carousel-caption">Caption for photo 3</p>
+      </div>
+      <div class="carousel-slide">
+        <div class="carousel-placeholder"><span>Photo 4</span></div>
+        <p class="carousel-caption">Caption for photo 4</p>
+      </div>
+      <div class="carousel-slide">
+        <div class="carousel-placeholder"><span>Photo 5</span></div>
+        <p class="carousel-caption">Caption for photo 5</p>
+      </div>
+    </div>
+    <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)" aria-label="Previous">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 4l-6 6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="carousel-btn carousel-next" onclick="moveCarousel(1)" aria-label="Next">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="carousel-dots" id="carousel-dots">
+      <button class="dot active" onclick="goToSlide(0)"></button>
+      <button class="dot" onclick="goToSlide(1)"></button>
+      <button class="dot" onclick="goToSlide(2)"></button>
+      <button class="dot" onclick="goToSlide(3)"></button>
+      <button class="dot" onclick="goToSlide(4)"></button>
+    </div>
+  </div>
+</section>
+
+<script>
+  // ── VIDEO MODAL ──
+  function openVideoModal(videoId, outlet, title) {
+    if (!videoId) return;
+    const modal = document.getElementById('video-modal');
+    const embed = document.getElementById('modal-embed');
+    document.getElementById('modal-outlet').textContent = outlet;
+    document.getElementById('modal-title').textContent = title;
+    embed.innerHTML = '';
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.allowFullscreen = true;
+    iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
+    embed.appendChild(iframe);
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVideoModal() {
+    const modal = document.getElementById('video-modal');
+    modal.classList.remove('active');
+    document.getElementById('modal-embed').innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('video-modal')) closeVideoModal();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideoModal(); });
+
+  document.querySelectorAll('#video-grid .video-card:not(.placeholder-card)').forEach(card => {
+    card.addEventListener('click', () => {
+      openVideoModal(card.dataset.videoId, card.dataset.outlet, card.dataset.title);
+    });
+  });
+
+  // ── MOBILE VIDEO FEED ──
+  function loadMobileVideo(posterEl) {
+    const wrap = posterEl.closest('.mobile-video-embed');
+    const embeddable  = wrap.dataset.embeddable === 'true';
+    const videoId     = wrap.dataset.videoId;
+    const youtubeUrl  = wrap.dataset.youtubeUrl || 'https://www.youtube.com/watch?v=' + videoId;
+
+    if (!embeddable) {
+      window.open(youtubeUrl, '_blank');
+      return;
+    }
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+    iframe.frameBorder = '0';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;border:none;';
+    wrap.style.position = 'relative';
+    wrap.innerHTML = '';
+    wrap.appendChild(iframe);
+  }
+
+    // ── CAROUSEL ──
+  let currentSlide = 0;
+  const totalSlides = 5;
+
+  function moveCarousel(dir) {
+    currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+    updateCarousel();
+  }
+
+  function goToSlide(n) {
+    currentSlide = n;
+    updateCarousel();
+  }
+
+  function updateCarousel() {
+    document.getElementById('carousel-track').style.transform = `translateX(-${currentSlide * 100}%)`;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+  }
+
+  // Touch swipe for carousel
+  let touchStartX = 0;
+  const track = document.getElementById('carousel-track');
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) moveCarousel(diff > 0 ? 1 : -1);
+  }, {passive:true});
+</script>
+
+
+
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-photo-wrap">
+      <div class="about-photo">
+        <img src="photo-hero.jpeg" alt="Sebastian Vega" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+    </div>
+
+    <div class="about-body">
+      <p class="section-label">About</p>
+      <h2>The Journalist</h2>
+
+      <p>As a video editor at <strong>Morning Brew</strong>, I help shape long-form and short-form video content across YouTube and social platforms. My work has supported major channel growth, million-view videos, and new show launches.</p>
+
+      <p>I've edited everything from daily business news and video podcasts to educational courses and advertiser integrations, collaborating closely with hosts, producers, and motion designers.</p>
+
+      <p>Before Morning Brew, I spent several years at <strong>The Wall Street Journal</strong> and <strong>The New York Times</strong>, where I helped launch new video teams, produced hundreds of reporter-fronted videos, and worked across YouTube, Instagram, Twitter, and Snapchat.</p>
+
+      <p>At The Times, I also helped manage the flagship @nytimes Instagram account — curating the feed, publishing Stories, writing captions, and working closely with editors, designers, and photo teams to translate reporting into visual storytelling.</p>
+
+      <p>Across my work, I focus on clarity, accuracy, strong visuals, and making complex stories accessible, no matter the platform. Earlier in my career, I gained newsroom experience at <strong>NBC Nightly News</strong>, <strong>CNBC</strong>, <strong>NBC Los Angeles (KNBC)</strong>, and <strong>NPR's KUT</strong> in Austin.</p>
+
+      <p>I earned a degree in broadcast and digital journalism from the <strong>University of Southern California</strong>, which I attended as a Gates Millennium Scholar.</p>
+
+      <div class="stats-row">
+        <div>
+          <div class="stat-num">600+</div>
+          <div class="stat-label">Videos at WSJ</div>
+        </div>
+        <div>
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Years in Journalism</div>
+        </div>
+        <div>
+          <div class="stat-num">3</div>
+          <div class="stat-label">Teams Launched</div>
+        </div>
+        <div>
+          <div class="stat-num">USC</div>
+          <div class="stat-label">Annenberg Alum</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume">
+  <div class="resume-inner">
+    <h2 style="margin-bottom:3rem;">Resume</h2>
+
+    <!-- EXPERIENCE -->
+    <div class="resume-block">
+      <p class="resume-block-title">Experience</p>
+      <!-- 1. -->
+      <div class="resume-entry">
+        <div class="resume-content">
+          <p class="resume-org">Morning Brew</p>
+          <p class="resume-role">Video Editor</p>
+          <div class="resume-date">July 2022 — Present</div>
+          <ul class="resume-bullets">
+            <li>• Edited the first Maxinomics longform video to reach one million views, then subscribers grew 88% (+56,822) in one month</li>
+            <li>• Edited 120 social videos in 10 weeks for Morning Brew Daily’s launch, including a TikTok that hit one million views</li>
+            <li>• Delivered a 14-part education video course and contributed to a 31-part Excel video course</li>
+            <li>• Support ad deals by editing and integrating ad reads into YouTube videos, adding required copy and branding elements</li>
+            <li>• Edit business news YouTube videos, social videos, video podcasts, branded content, and more using Adobe Premiere Pro</li>
+            <li>• Handle editing, b-roll sourcing, music, sound effects, graphics, color correction, and in-house motion graphics integration</li>
+            <li>• Collaborate with motion graphics animators to identify key graphic moments and integrate animations</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2. -->
+      <div class="resume-entry">
+        <div class="resume-content">
+          <p class="resume-org">The Wall Street Journal</p>
+          <p class="resume-role">YouTube Video Journalist</p>
+          <div class="resume-date">Aug. 2021 — July 2022</div>
+          <ul class="resume-bullets">
+            <li>• Launched 2 topical, host-driven YouTube news channels for WSJ’s “Journalists as Creators” partnership with Google</li>
+            <li>• Produced, edited with Premiere Pro and After Effects, and helped script 30 3- to 7-minute videos (markets, science, tech, news)</li>
+            <li>• Editing included creating radio and fine cuts, utilizing graphics, sourcing visuals, color correcting and applying music</li>
+            <li>• Remote produced, which included directing shoots over calls, adjusting interviewees’ shot and taping Zoom interviews</li>
+            <li>• Commissioned graphics, which included conceptualizing graphics requests and guiding animators</li>
+            <li>• Created eye-catching video thumbnails in Photoshop, optimized for YouTube with text, host cutout and strong visual</li>
+             <li>• Developed (alongside associate director of video/audio strategy) YouTube community guidelines explaining philosophy and potential execution of YouTube Community posts (GIFs, polls), Stories and Shorts </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3. WSJ Social Video -->
+      <div class="resume-entry">
+        <div class="resume-content">
+          <p class="resume-org">The Wall Street Journal</p>
+          <p class="resume-role">Social Video Journalist</p>
+          <div class="resume-date">Jul. 2019 — Aug. 2021</div>
+          <ul class="resume-bullets">
+            <li>• Launched WSJ's Twitter video team, alongside colleagues, which published 8 social videos every weekday on Twitter</li>
+            <li>• Created 640 reporter-fronted and text-on-screen one-minute social videos (markets, personal finance, tech, business)</li>
+            <li>• Produced, scripted, shot and Premiere Pro edited stock market videos (at least one every day) under tight deadlines</li>
+            <li>• Shot and interviewed reporters in newsroom and studio with Sony FS5 and light setup; shot over Zoom during Covid</li>
+            <li>• Piloted and launched a daily market update video series and weekly markets wrap "Winners and Losers" video series</li>
+            <li>• Wrote social copy and headlines for videos and worked with social team to distribute videos</li>
+            <li>• Established team's folder structure for video editing files and oversaw migration of terabytes of files to a new server</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="resume-block">
+      <p class="resume-block-title">Education</p>
+      <div class="resume-entry">
+        <div class="resume-content">
+          <p class="resume-role">University of Southern California</p>
+          <p class="resume-org">B.A. Broadcast &amp; Digital Journalism</p>
+          <div class="resume-date">May 2018</div>
+          <p class="resume-edu-detail">USC Annenberg School for Communication and Journalism<br>Gates Millennium Scholar · Director's Award for Excellence</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="resume-block">
+      <p class="resume-block-title">Skills</p>
+      <div class="resume-simple-entry" style="grid-template-columns: 1fr;">
+        <div class="resume-tags">
+          <span class="resume-tag">Adobe Premiere Pro</span>
+          <span class="resume-tag">Video production</span>
+          <span class="resume-tag">Product launcher</span>
+          <span class="resume-tag">Social publishing</span>
+          <span class="resume-tag">Media management</span>
+          <span class="resume-tag">Highly detail-oriented</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORGANIZATIONS -->
+    <div class="resume-block">
+      <p class="resume-block-title">Organizations</p>
+      <div class="resume-simple-entry">
+        <span class="resume-simple-label">SAAHJ</span>
+        <span class="resume-simple-value">San Antonio Association of Hispanic Journalists, Member</span>
+      </div>
+      <div class="resume-simple-entry">
+        <span class="resume-simple-label">NAHJ</span>
+        <span class="resume-simple-value">National Association of Hispanic Journalists, Member</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">Sebastian Vega</span>
+  <div class="footer-links">
+    <a class="footer-link" href="https://www.linkedin.com/in/sebvega/" target="_blank">LinkedIn</a>
+    <a class="footer-link" href="https://x.com/SebAntonioVega" target="_blank">X / Twitter</a>
+    <a class="footer-link" href="/resume.pdf" target="_blank">Resume ↓</a>
+  </div>
+  <span>© 2026 · sebvega.com</span>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    const btn = document.getElementById('hamburger');
+    links.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
+
+  function closeMenu() {
+    document.querySelector('.nav-links').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+</script>
+
+</body>
+</html>
