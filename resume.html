@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Sebastian Vega</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📸</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,900;1,300&family=Newsreader:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #C8352A;
+  --black: #111;
+  --gray: #666;
+  --light: #f0eeea;
+  --white: #ffffff;
+  --ff-serif: 'Newsreader', serif;
+  --ff-sans: 'Source Sans 3', sans-serif;
+}
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+body {
+  background: var(--light);
+  color: var(--black);
+  font-family: var(--ff-sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  padding-top: 57px;
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+
+.nav-name {
+  font-family: var(--ff-sans);
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--red); }
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 101;
+}
+.nav-hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--black);
+  transition: transform 0.25s, opacity 0.25s;
+  transform-origin: center;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* RESUME PAGE */
+#resume {
+  max-width: 860px;
+  scroll-margin-top: 80px;
+  margin: 0 auto;
+  padding: 3rem 3rem 4rem;
+}
+
+.resume-page-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px dashed rgba(0,0,0,0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.resume-page-header h1 {
+  font-family: var(--ff-serif);
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  font-weight: 600;
+  color: var(--black);
+  line-height: 1.1;
+}
+
+.resume-download {
+  font-family: var(--ff-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding-bottom: 0.1rem;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.resume-download:hover { color: var(--red); border-color: var(--red); }
+
+/* RESUME BLOCKS */
+.resume-block { margin-bottom: 2rem; }
+.resume-block:last-child { margin-bottom: 0; }
+
+.resume-block-title {
+  font-family: var(--ff-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.resume-entry {
+  display: block;
+  margin-bottom: 1.1rem;
+  padding-bottom: 1.1rem;
+}
+.resume-entry:last-child { margin-bottom: 0; padding-bottom: 0; }
+
+.resume-org {
+  font-family: var(--ff-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 0.2rem;
+}
+
+.resume-role {
+  font-family: var(--ff-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--black);
+  line-height: 1.25;
+  margin-bottom: 0.1rem;
+}
+
+.resume-date {
+  font-family: var(--ff-sans);
+  font-size: 0.75rem;
+  color: var(--gray);
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  margin-top: 0.05rem;
+  margin-bottom: 0.45rem;
+}
+
+.resume-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.45rem;
+}
+
+.resume-bullets li {
+  font-family: var(--ff-sans);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--gray);
+}
+
+.resume-edu-detail {
+  font-family: var(--ff-sans);
+  font-size: 0.88rem;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-top: 0.5rem;
+}
+
+.resume-simple-entry {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0 2rem;
+}
+.resume-simple-entry:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+.resume-simple-label {
+  font-family: var(--ff-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--black);
+  padding-top: 0.1rem;
+}
+
+.resume-simple-value {
+  font-family: var(--ff-sans);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--gray);
+}
+
+.resume-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+.resume-tag {
+  font-family: var(--ff-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--black);
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 0.25rem 0.65rem;
+}
+
+/* FOOTER */
+footer {
+  width: 100%;
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  font-family: var(--ff-sans);
+  font-size: 0.7rem;
+  color: rgba(0,0,0,0.3);
+  letter-spacing: 0.08em;
+  background: #ffffff;
+}
+
+.footer-name {
+  font-family: var(--ff-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.4);
+}
+
+.footer-links { display: flex; gap: 1.5rem; align-items: center; }
+
+.footer-link {
+  font-family: var(--ff-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-link:hover { color: var(--red); }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav { padding: 1.25rem 1.5rem; position: fixed; top: 0; left: 0; right: 0; z-index: 100; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: rgba(255,255,255,0.98);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    z-index: 99;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a {
+    display: block; width: 100%;
+    font-size: 0.85rem; letter-spacing: 0.12em;
+    color: var(--black); padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .nav-links li:last-child a { border-bottom: none; }
+  .nav-hamburger { display: flex; }
+
+  #resume { padding: 2rem 1.5rem 3rem; }
+
+  .resume-page-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+
+  .resume-simple-entry { grid-template-columns: 1fr; gap: 0.35rem; }
+
+  footer { padding: 1.5rem; flex-direction: column; gap: 0.75rem; text-align: center; }
+  .footer-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="index.html">Sebastian Vega</a>
+  <ul class="nav-links">
+    <li><a href="index.html#work" onclick="closeMenu()">Work</a></li>
+    <li><a href="index.html#about" onclick="closeMenu()">About</a></li>
+    <li><a href="resume.html" class="active" onclick="closeMenu()">Resume</a></li>
+    <li><a href="mailto:hello@sebvega.com" onclick="closeMenu()">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section id="resume">
+  <div class="resume-page-header">
+    <h1>Resume</h1>
+    <a class="resume-download" href="/resume.pdf" target="_blank">Download PDF ↓</a>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="resume-block">
+    <p class="resume-block-title">Experience</p>
+
+    <div class="resume-entry">
+      <p class="resume-org">Morning Brew</p>
+      <p class="resume-role">Video Editor</p>
+      <div class="resume-date">July 2022 — Present</div>
+      <ul class="resume-bullets">
+        <li>• Edited the first Maxinomics longform video to reach one million views, then subscribers grew 88% (+56,822) in one month</li>
+        <li>• Edited 120 social videos in 10 weeks for Morning Brew Daily's launch, including a TikTok that hit one million views</li>
+        <li>• Delivered a 14-part education video course and contributed to a 31-part Excel video course</li>
+        <li>• Support ad deals by editing and integrating ad reads into YouTube videos, adding required copy and branding elements</li>
+        <li>• Edit business news YouTube videos, social videos, video podcasts, branded content, and more using Adobe Premiere Pro</li>
+        <li>• Handle editing, b-roll sourcing, music, sound effects, graphics, color correction, and in-house motion graphics integration</li>
+        <li>• Collaborate with motion graphics animators to identify key graphic moments and integrate animations</li>
+      </ul>
+    </div>
+
+    <div class="resume-entry">
+      <p class="resume-org">The Wall Street Journal</p>
+      <p class="resume-role">YouTube Video Journalist</p>
+      <div class="resume-date">Aug. 2021 — July 2022</div>
+      <ul class="resume-bullets">
+        <li>• Launched 2 topical, host-driven YouTube news channels for WSJ's "Journalists as Creators" partnership with Google</li>
+        <li>• Produced, edited with Premiere Pro and After Effects, and helped script 30 3- to 7-minute videos (markets, science, tech, news)</li>
+        <li>• Editing included creating radio and fine cuts, utilizing graphics, sourcing visuals, color correcting and applying music</li>
+        <li>• Remote produced, which included directing shoots over calls, adjusting interviewees' shot and taping Zoom interviews</li>
+        <li>• Commissioned graphics, which included conceptualizing graphics requests and guiding animators</li>
+        <li>• Created eye-catching video thumbnails in Photoshop, optimized for YouTube with text, host cutout and strong visual</li>
+        <li>• Developed (alongside associate director of video/audio strategy) YouTube community guidelines explaining philosophy and potential execution of YouTube Community posts (GIFs, polls), Stories and Shorts</li>
+      </ul>
+    </div>
+
+    <div class="resume-entry">
+      <p class="resume-org">The Wall Street Journal</p>
+      <p class="resume-role">Social Video Journalist</p>
+      <div class="resume-date">Jul. 2019 — Aug. 2021</div>
+      <ul class="resume-bullets">
+        <li>• Launched WSJ's Twitter video team, alongside colleagues, which published 8 social videos every weekday on Twitter</li>
+        <li>• Created 640 reporter-fronted and text-on-screen one-minute social videos (markets, personal finance, tech, business)</li>
+        <li>• Produced, scripted, shot and Premiere Pro edited stock market videos (at least one every day) under tight deadlines</li>
+        <li>• Shot and interviewed reporters in newsroom and studio with Sony FS5 and light setup; shot over Zoom during Covid</li>
+        <li>• Piloted and launched a daily market update video series and weekly markets wrap "Winners and Losers" video series</li>
+        <li>• Wrote social copy and headlines for videos and worked with social team to distribute videos</li>
+        <li>• Established team's folder structure for video editing files and oversaw migration of terabytes of files to a new server</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="resume-block">
+    <p class="resume-block-title">Education</p>
+    <div class="resume-entry">
+      <div class="resume-content">
+        <p class="resume-role">University of Southern California</p>
+        <p class="resume-org">B.A. Broadcast &amp; Digital Journalism</p>
+        <div class="resume-date">May 2018</div>
+        <p class="resume-edu-detail">USC Annenberg School for Communication and Journalism<br>Gates Millennium Scholar · Director's Award for Excellence</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="resume-block">
+    <p class="resume-block-title">Skills</p>
+    <div class="resume-simple-entry" style="grid-template-columns: 1fr;">
+      <div class="resume-tags">
+        <span class="resume-tag">Adobe Premiere Pro</span>
+        <span class="resume-tag">Video production</span>
+        <span class="resume-tag">Product launcher</span>
+        <span class="resume-tag">Social publishing</span>
+        <span class="resume-tag">Media management</span>
+        <span class="resume-tag">Highly detail-oriented</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORGANIZATIONS -->
+  <div class="resume-block">
+    <p class="resume-block-title">Organizations</p>
+    <div class="resume-simple-entry">
+      <span class="resume-simple-label">SAAHJ</span>
+      <span class="resume-simple-value">San Antonio Association of Hispanic Journalists, Member</span>
+    </div>
+    <div class="resume-simple-entry">
+      <span class="resume-simple-label">NAHJ</span>
+      <span class="resume-simple-value">National Association of Hispanic Journalists, Member</span>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  <span class="footer-name">Sebastian Vega</span>
+  <div class="footer-links">
+    <a class="footer-link" href="https://www.linkedin.com/in/sebvega/" target="_blank">LinkedIn</a>
+    <a class="footer-link" href="https://x.com/SebAntonioVega" target="_blank">X / Twitter</a>
+    <a class="footer-link" href="/resume.pdf" target="_blank">Resume ↓</a>
+  </div>
+  <span>© 2026 · sebvega.com</span>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    const btn = document.getElementById('hamburger');
+    links.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
+  function closeMenu() {
+    document.querySelector('.nav-links').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+</script>
+
+</body>
+</html>

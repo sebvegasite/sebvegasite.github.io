@@ -27,7 +27,6 @@ body {
   font-family: var(--ff-sans);
   font-weight: 300;
   overflow-x: hidden;
-  padding-top: 57px;
 }
 
 /* NAV */
@@ -101,7 +100,7 @@ nav {
   grid-template-columns: minmax(auto, 420px) minmax(auto, 480px);
   max-width: 100%;
   margin: 0 auto;
-  padding: 2.5rem 8rem 3.5rem;
+  padding: calc(57px + 1.75rem) 8rem 2.5rem;
   gap: 4rem;
   align-items: center;
   justify-content: center;
@@ -154,7 +153,7 @@ nav {
 .hero-text {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.25rem;
 }
 
 .hero-role {
@@ -271,15 +270,17 @@ h1 em { font-style: italic; color: var(--red); }
 #work {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 6rem 3rem;
+  padding: 3rem 3rem;
   background: #ffffff;
+  scroll-margin-top: 80px;
 }
 
 .section-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 2.5rem;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1.75rem;
 }
 
 .section-label {
@@ -291,11 +292,11 @@ h1 em { font-style: italic; color: var(--red); }
 }
 
 h2 {
-  font-family: var(--ff-sans);
-  font-size: clamp(1.85rem, 3vw, 2.75rem);
-  font-weight: 700;
+  font-family: var(--ff-serif);
+  font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+  font-weight: 600;
   color: var(--black);
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .section-count {
@@ -399,7 +400,7 @@ h2 {
 .video-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  gap: 1rem;
   max-width: 960px;
   margin-left: auto;
   margin-right: auto;
@@ -547,7 +548,7 @@ h2 {
 
 /* GALLERY */
 #gallery {
-  padding: 4rem 3rem 3rem;
+  padding: 3rem 3rem 2.5rem;
   background: var(--light);
   border-top: 1px solid rgba(0,0,0,0.06);
   width: 100%;
@@ -640,9 +641,10 @@ h2 {
 
 /* ABOUT */
 #about {
-  background: #ffffff;
-  padding: 6rem 3rem;
+  background: var(--light);
+  padding: 3rem 3rem 2.5rem;
   border-top: 1px solid rgba(0,0,0,0.07);
+  scroll-margin-top: 80px;
 }
 
 .about-inner {
@@ -650,7 +652,7 @@ h2 {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1.6fr;
-  gap: 6rem;
+  gap: 4rem;
   align-items: start;
 }
 
@@ -694,7 +696,7 @@ h2 {
 .about-body {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.85rem;
 }
 
 .about-body p {
@@ -709,9 +711,8 @@ h2 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  padding: 1.75rem 0;
+  padding: 0.75rem 0;
   border-top: 1px solid rgba(0,0,0,0.1);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .stat-num {
@@ -752,8 +753,8 @@ h2 {
 
 /* FOOTER */
 footer {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 100%;
+  background: #ffffff;
   padding: 2rem 3rem;
   display: flex;
   justify-content: space-between;
@@ -762,6 +763,9 @@ footer {
   font-size: 0.7rem;
   color: rgba(0,0,0,0.3);
   letter-spacing: 0.08em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .footer-name {
@@ -804,7 +808,7 @@ footer {
 }
 
 .resume-block {
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .resume-block:last-child { margin-bottom: 0; }
@@ -815,15 +819,15 @@ footer {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--red);
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
 .resume-entry {
   display: block;
-  margin-bottom: 2.25rem;
-  padding-bottom: 2.25rem;
+  margin-bottom: 1.1rem;
+  padding-bottom: 1.1rem;
   border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
@@ -839,8 +843,8 @@ footer {
   color: var(--gray);
   letter-spacing: 0.04em;
   line-height: 1.6;
-  margin-top: 0.1rem;
-  margin-bottom: 0.75rem;
+  margin-top: 0.05rem;
+  margin-bottom: 0.45rem;
 }
 
 .resume-content {}
@@ -856,19 +860,19 @@ footer {
 
 .resume-role {
   font-family: var(--ff-serif);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--black);
   line-height: 1.25;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.1rem;
 }
 
 .resume-bullets {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  margin-top: 0.65rem;
+  gap: 0.25rem;
+  margin-top: 0.45rem;
 }
 
 .resume-bullets li {
@@ -1047,7 +1051,7 @@ h1            { animation-delay: 0.15s; }
   <ul class="nav-links">
     <li><a href="#work" onclick="closeMenu()">Work</a></li>
     <li><a href="#about" onclick="closeMenu()">About</a></li>
-    <li><a href="#resume" onclick="closeMenu()">Resume</a></li>
+    <li><a href="resume.html" onclick="closeMenu()">Resume</a></li>
     <li><a href="mailto:hello@sebvega.com" onclick="closeMenu()">Contact</a></li>
   </ul>
   <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -1064,7 +1068,7 @@ h1            { animation-delay: 0.15s; }
   <div class="hero-text">
     <p class="hero-greeting">Hi, I'm</p>
     <h1>Sebastian <em>Vega</em></h1>
-    <p class="hero-bio">I'm a journalist and video editor passionate about improving the way you receive news. My work has supported major channel growth, million-view videos, and new show launches.</p>
+    <p class="hero-bio">I’m a journalist and video editor passionate about improving the way people receive news. My work has supported major channel growth, million-view videos, and new show launches. A graduate of USC, I work remotely in San Antonio for a New York–based team, after living and working in New York City, Los Angeles, and Austin.</p>
 
     <div class="hero-outlets">
       <span class="outlet-tag outlet-current">Morning Brew ✦</span>
@@ -1271,7 +1275,7 @@ h1            { animation-delay: 0.15s; }
   </div>
 </section>
 
-<!-- PHOTO GALLERY -->
+<!-- PHOTO GALLERY — DISABLED, UNCOMMENT TO RE-ENABLE
 <section id="gallery">
   <div class="section-header">
     <div>
@@ -1412,6 +1416,7 @@ h1            { animation-delay: 0.15s; }
 
 
 </section>
+END GALLERY COMMENT -->
 
 <!-- ABOUT -->
 <section id="about">
@@ -1426,9 +1431,7 @@ h1            { animation-delay: 0.15s; }
       <p class="section-label">About</p>
       <h2>The Journalist</h2>
 
-      <p>As a video editor at <strong>Morning Brew</strong>, I help shape long-form and short-form video content across YouTube and social platforms. My work has supported major channel growth, million-view videos, and new show launches.</p>
-
-      <p>I've edited everything from daily business news and video podcasts to educational courses and advertiser integrations, collaborating closely with hosts, producers, and motion designers.</p>
+      <p>As a video editor at <strong>Morning Brew</strong>, I help shape long-form and short-form video content across YouTube and social platforms. I've edited everything from daily business news and video podcasts to educational courses and advertiser integrations, collaborating closely with hosts, producers, and motion designers.</p>
 
       <p>Before Morning Brew, I spent several years at <strong>The Wall Street Journal</strong> and <strong>The New York Times</strong>, where I helped launch new video teams, produced hundreds of reporter-fronted videos, and worked across YouTube, Instagram, Twitter, and Snapchat.</p>
 
@@ -1461,112 +1464,6 @@ h1            { animation-delay: 0.15s; }
   </div>
 </section>
 
-<!-- RESUME -->
-<section id="resume">
-  <div class="resume-inner">
-    <h2 style="margin-bottom:3rem;">Resume</h2>
-
-    <!-- EXPERIENCE -->
-    <div class="resume-block">
-      <p class="resume-block-title">Experience</p>
-      <!-- 1. -->
-      <div class="resume-entry">
-        <div class="resume-content">
-          <p class="resume-org">Morning Brew</p>
-          <p class="resume-role">Video Editor</p>
-          <div class="resume-date">July 2022 — Present</div>
-          <ul class="resume-bullets">
-            <li>• Edited the first Maxinomics longform video to reach one million views, then subscribers grew 88% (+56,822) in one month</li>
-            <li>• Edited 120 social videos in 10 weeks for Morning Brew Daily’s launch, including a TikTok that hit one million views</li>
-            <li>• Delivered a 14-part education video course and contributed to a 31-part Excel video course</li>
-            <li>• Support ad deals by editing and integrating ad reads into YouTube videos, adding required copy and branding elements</li>
-            <li>• Edit business news YouTube videos, social videos, video podcasts, branded content, and more using Adobe Premiere Pro</li>
-            <li>• Handle editing, b-roll sourcing, music, sound effects, graphics, color correction, and in-house motion graphics integration</li>
-            <li>• Collaborate with motion graphics animators to identify key graphic moments and integrate animations</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- 2. -->
-      <div class="resume-entry">
-        <div class="resume-content">
-          <p class="resume-org">The Wall Street Journal</p>
-          <p class="resume-role">YouTube Video Journalist</p>
-          <div class="resume-date">Aug. 2021 — July 2022</div>
-          <ul class="resume-bullets">
-            <li>• Launched 2 topical, host-driven YouTube news channels for WSJ’s “Journalists as Creators” partnership with Google</li>
-            <li>• Produced, edited with Premiere Pro and After Effects, and helped script 30 3- to 7-minute videos (markets, science, tech, news)</li>
-            <li>• Editing included creating radio and fine cuts, utilizing graphics, sourcing visuals, color correcting and applying music</li>
-            <li>• Remote produced, which included directing shoots over calls, adjusting interviewees’ shot and taping Zoom interviews</li>
-            <li>• Commissioned graphics, which included conceptualizing graphics requests and guiding animators</li>
-            <li>• Created eye-catching video thumbnails in Photoshop, optimized for YouTube with text, host cutout and strong visual</li>
-             <li>• Developed (alongside associate director of video/audio strategy) YouTube community guidelines explaining philosophy and potential execution of YouTube Community posts (GIFs, polls), Stories and Shorts </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- 3. WSJ Social Video -->
-      <div class="resume-entry">
-        <div class="resume-content">
-          <p class="resume-org">The Wall Street Journal</p>
-          <p class="resume-role">Social Video Journalist</p>
-          <div class="resume-date">Jul. 2019 — Aug. 2021</div>
-          <ul class="resume-bullets">
-            <li>• Launched WSJ's Twitter video team, alongside colleagues, which published 8 social videos every weekday on Twitter</li>
-            <li>• Created 640 reporter-fronted and text-on-screen one-minute social videos (markets, personal finance, tech, business)</li>
-            <li>• Produced, scripted, shot and Premiere Pro edited stock market videos (at least one every day) under tight deadlines</li>
-            <li>• Shot and interviewed reporters in newsroom and studio with Sony FS5 and light setup; shot over Zoom during Covid</li>
-            <li>• Piloted and launched a daily market update video series and weekly markets wrap "Winners and Losers" video series</li>
-            <li>• Wrote social copy and headlines for videos and worked with social team to distribute videos</li>
-            <li>• Established team's folder structure for video editing files and oversaw migration of terabytes of files to a new server</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- EDUCATION -->
-    <div class="resume-block">
-      <p class="resume-block-title">Education</p>
-      <div class="resume-entry">
-        <div class="resume-content">
-          <p class="resume-role">University of Southern California</p>
-          <p class="resume-org">B.A. Broadcast &amp; Digital Journalism</p>
-          <div class="resume-date">May 2018</div>
-          <p class="resume-edu-detail">USC Annenberg School for Communication and Journalism<br>Gates Millennium Scholar · Director's Award for Excellence</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- SKILLS -->
-    <div class="resume-block">
-      <p class="resume-block-title">Skills</p>
-      <div class="resume-simple-entry" style="grid-template-columns: 1fr;">
-        <div class="resume-tags">
-          <span class="resume-tag">Adobe Premiere Pro</span>
-          <span class="resume-tag">Video production</span>
-          <span class="resume-tag">Product launcher</span>
-          <span class="resume-tag">Social publishing</span>
-          <span class="resume-tag">Media management</span>
-          <span class="resume-tag">Highly detail-oriented</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ORGANIZATIONS -->
-    <div class="resume-block">
-      <p class="resume-block-title">Organizations</p>
-      <div class="resume-simple-entry">
-        <span class="resume-simple-label">SAAHJ</span>
-        <span class="resume-simple-value">San Antonio Association of Hispanic Journalists, Member</span>
-      </div>
-      <div class="resume-simple-entry">
-        <span class="resume-simple-label">NAHJ</span>
-        <span class="resume-simple-value">National Association of Hispanic Journalists, Member</span>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 <footer>
   <span class="footer-name">Sebastian Vega</span>
