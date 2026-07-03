@@ -999,16 +999,18 @@ h1            { animation-delay: 0.15s; }
   #home {
     grid-template-columns: 1fr;
     min-height: auto;
-    padding: 2rem 1.5rem 3rem;
-    gap: 2rem;
+    padding: calc(57px + 1.5rem) 1.5rem 2.5rem;
+    gap: 1.5rem;
   }
 
   .hero-photo { aspect-ratio: 1/1; max-height: 300px; }
   .hero-bio { max-width: 100%; font-family: var(--ff-sans); }
   .hero-greeting { font-family: var(--ff-serif); }
 
-  #work { padding: 4rem 1.5rem; }
-  .section-header { flex-direction: column; align-items: flex-start; gap: 0; }
+  #work { padding: 3rem 1.5rem; }
+  .section-header { flex-direction: column; align-items: flex-start; text-align: left; gap: 0; }
+  .section-label { text-align: left; }
+  h2 { text-align: left; }
 
   /* Switch video to mobile feed */
   .video-desktop { display: none; }
@@ -1024,6 +1026,7 @@ h1            { animation-delay: 0.15s; }
   }
 
   .about-photo { aspect-ratio: 1/1; }
+  .about-photo img { object-position: center 20%; }
   .stats-row { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
 
   footer {
@@ -1173,21 +1176,6 @@ h1            { animation-delay: 0.15s; }
           <span class="vc-title">The real reason your vet bill is so high</span>
           <span class="vc-note">Edited in 2023</span>
         </div>
-      </div>
-    </div>
-  </div>
-
-    <!-- VIDEO MODAL -->
-  <div class="video-modal-overlay" id="video-modal" onclick="closeModal(event)">
-    <div class="video-modal-inner">
-      <button class="video-modal-close" onclick="closeVideoModal()">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        Close
-      </button>
-      <div class="video-modal-embed" id="modal-embed"></div>
-      <div class="video-modal-info">
-        <span class="video-modal-outlet" id="modal-outlet"></span>
-        <span class="video-modal-title" id="modal-title"></span>
       </div>
     </div>
   </div>
@@ -1356,9 +1344,11 @@ h1            { animation-delay: 0.15s; }
 
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideoModal(); });
 
-  document.querySelectorAll('#video-grid .video-card:not(.placeholder-card)').forEach(card => {
+  document.querySelectorAll('#video-grid .video-card').forEach(card => {
     card.addEventListener('click', () => {
-      openVideoModal(card.dataset.videoId, card.dataset.outlet, card.dataset.title);
+      const videoId = card.dataset.videoId;
+      if (!videoId) return;
+      openVideoModal(videoId, card.dataset.outlet, card.dataset.title);
     });
   });
 
@@ -1384,7 +1374,7 @@ h1            { animation-delay: 0.15s; }
     wrap.appendChild(iframe);
   }
 
-    // ── CAROUSEL ──
+  // ── CAROUSEL ──
   let currentSlide = 0;
   const totalSlides = 5;
 
@@ -1399,18 +1389,22 @@ h1            { animation-delay: 0.15s; }
   }
 
   function updateCarousel() {
-    document.getElementById('carousel-track').style.transform = `translateX(-${currentSlide * 100}%)`;
+    const t = document.getElementById('carousel-track');
+    if (!t) return;
+    t.style.transform = `translateX(-${currentSlide * 100}%)`;
     document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
   }
 
   // Touch swipe for carousel
   let touchStartX = 0;
   const track = document.getElementById('carousel-track');
-  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
-  track.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) moveCarousel(diff > 0 ? 1 : -1);
-  }, {passive:true});
+  if (track) {
+    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+    track.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) moveCarousel(diff > 0 ? 1 : -1);
+    }, {passive:true});
+  }
 </script>
 
 
@@ -1474,6 +1468,21 @@ END GALLERY COMMENT -->
   </div>
   <span>© 2026 · sebvega.com</span>
 </footer>
+
+  <!-- VIDEO MODAL -->
+  <div class="video-modal-overlay" id="video-modal" onclick="closeModal(event)">
+    <div class="video-modal-inner">
+      <button class="video-modal-close" onclick="closeVideoModal()">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Close
+      </button>
+      <div class="video-modal-embed" id="modal-embed"></div>
+      <div class="video-modal-info">
+        <span class="video-modal-outlet" id="modal-outlet"></span>
+        <span class="video-modal-title" id="modal-title"></span>
+      </div>
+    </div>
+  </div>
 
 <script>
   function toggleMenu() {
